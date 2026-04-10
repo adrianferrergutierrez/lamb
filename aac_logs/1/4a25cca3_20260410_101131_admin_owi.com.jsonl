@@ -1,0 +1,4 @@
+{"ts": "2026-04-10T10:11:31.352791Z", "session_id": "4a25cca3-6458-4bd0-8f73-0e6988817f57", "event": "session_start", "data": {"assistant_id": null, "model": "qwen3.5-flash-2026-02-23", "user_email": "admin@owi.com"}}
+{"ts": "2026-04-10T10:11:31.353804Z", "session_id": "4a25cca3-6458-4bd0-8f73-0e6988817f57", "event": "user_message", "data": {"content": "1"}}
+{"ts": "2026-04-10T10:11:34.180682Z", "session_id": "4a25cca3-6458-4bd0-8f73-0e6988817f57", "event": "agent_response", "data": {"content": "```bash\nlamb assistant list\n```\n\n**Next?**\n1. Ver todos los asistentes  \n2. Probar el tutor existente\n3. Otro — crear de nuevo"}}
+{"ts": "2026-04-10T10:11:34.230608Z", "session_id": "4a25cca3-6458-4bd0-8f73-0e6988817f57", "event": "turn_complete", "data": {"turns": 21, "tool_calls": 0, "tool_errors": 0, "total_tool_time_ms": 0, "model": "qwen3.5-flash-2026-02-23"}}

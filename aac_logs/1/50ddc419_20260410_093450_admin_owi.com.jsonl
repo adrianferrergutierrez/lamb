@@ -1,0 +1,5 @@
+{"ts": "2026-04-10T09:34:50.602177Z", "session_id": "50ddc419-55a4-4630-a91d-56bc989be566", "event": "session_start", "data": {"assistant_id": null, "model": "qwen3.5-flash-2026-02-23", "user_email": "admin@owi.com"}}
+{"ts": "2026-04-10T09:34:50.632330Z", "session_id": "50ddc419-55a4-4630-a91d-56bc989be566", "event": "user_message", "data": {"content": "s"}}
+{"ts": "2026-04-10T09:34:50.632517Z", "session_id": "50ddc419-55a4-4630-a91d-56bc989be566", "event": "tool_call", "data": {"command": "lamb assistant delete 68", "success": true, "elapsed_ms": 27.7, "data": {"message": "Assistant soft deleted successfully"}}}
+{"ts": "2026-04-10T09:34:53.479383Z", "session_id": "50ddc419-55a4-4630-a91d-56bc989be566", "event": "agent_response", "data": {"content": "Borrado correctamente ✅\n\n**Next?**\n1. Crear nuevo tutor de mates\n2. Revisar tus otros asistentes\n3. Otro — dime"}}
+{"ts": "2026-04-10T09:34:53.492441Z", "session_id": "50ddc419-55a4-4630-a91d-56bc989be566", "event": "turn_complete", "data": {"turns": 21, "tool_calls": 1, "tool_errors": 0, "total_tool_time_ms": 27.7, "model": "qwen3.5-flash-2026-02-23"}}

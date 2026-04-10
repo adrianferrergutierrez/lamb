@@ -1,0 +1,4 @@
+{"ts": "2026-04-10T09:54:28.152146Z", "session_id": "916bf296-ce30-40cd-9cc6-27db9ca26d69", "event": "session_start", "data": {"assistant_id": null, "model": "qwen3.5-flash-2026-02-23", "user_email": "admin@owi.com"}}
+{"ts": "2026-04-10T09:54:28.153060Z", "session_id": "916bf296-ce30-40cd-9cc6-27db9ca26d69", "event": "user_message", "data": {"content": "n"}}
+{"ts": "2026-04-10T09:54:31.600165Z", "session_id": "916bf296-ce30-40cd-9cc6-27db9ca26d69", "event": "agent_response", "data": {"content": "✅ Entendido, dejo **1_max** como está.\n\n¿Qué prefieres hacer ahora?\n\n**Next?**\n1. Crear un nuevo asistente con nombre diferente\n2. Probar el 1_max existente con una pregunta de prueba\n3. Other — dime qué necesitas"}}
+{"ts": "2026-04-10T09:54:31.615550Z", "session_id": "916bf296-ce30-40cd-9cc6-27db9ca26d69", "event": "turn_complete", "data": {"turns": 8, "tool_calls": 0, "tool_errors": 0, "total_tool_time_ms": 0, "model": "qwen3.5-flash-2026-02-23"}}

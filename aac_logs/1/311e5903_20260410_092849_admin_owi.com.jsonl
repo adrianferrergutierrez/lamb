@@ -1,0 +1,4 @@
+{"ts": "2026-04-10T09:28:49.431124Z", "session_id": "311e5903-b8ed-4d1d-9766-4403fd308e7d", "event": "session_start", "data": {"assistant_id": null, "model": "qwen3.5-flash-2026-02-23", "user_email": "admin@owi.com"}}
+{"ts": "2026-04-10T09:28:49.432374Z", "session_id": "311e5903-b8ed-4d1d-9766-4403fd308e7d", "event": "user_message", "data": {"content": "mathematics"}}
+{"ts": "2026-04-10T09:28:52.900532Z", "session_id": "311e5903-b8ed-4d1d-9766-4403fd308e7d", "event": "agent_response", "data": {"content": "Great! Mathematics is the topic.\n\n**Who will use it?** (middle school, high school, college level?)\n\n**Should it have a knowledge base with study materials?**"}}
+{"ts": "2026-04-10T09:28:52.916223Z", "session_id": "311e5903-b8ed-4d1d-9766-4403fd308e7d", "event": "turn_complete", "data": {"turns": 4, "tool_calls": 0, "tool_errors": 0, "total_tool_time_ms": 0, "model": "qwen3.5-flash-2026-02-23"}}

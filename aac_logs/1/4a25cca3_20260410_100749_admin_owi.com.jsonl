@@ -1,0 +1,4 @@
+{"ts": "2026-04-10T10:07:49.997204Z", "session_id": "4a25cca3-6458-4bd0-8f73-0e6988817f57", "event": "session_start", "data": {"assistant_id": null, "model": "qwen3.5-flash-2026-02-23", "user_email": "admin@owi.com"}}
+{"ts": "2026-04-10T10:07:49.998477Z", "session_id": "4a25cca3-6458-4bd0-8f73-0e6988817f57", "event": "user_message", "data": {"content": "2"}}
+{"ts": "2026-04-10T10:07:54.167428Z", "session_id": "4a25cca3-6458-4bd0-8f73-0e6988817f57", "event": "agent_response", "data": {"content": "```bash\nlamb assistant config\n```\n\n**Next?**\n1. Ver modelos disponibles  \n2. Proponer configuración completa\n3. Otro — cambiar tema"}}
+{"ts": "2026-04-10T10:07:54.181751Z", "session_id": "4a25cca3-6458-4bd0-8f73-0e6988817f57", "event": "turn_complete", "data": {"turns": 5, "tool_calls": 0, "tool_errors": 0, "total_tool_time_ms": 0, "model": "qwen3.5-flash-2026-02-23"}}

@@ -1,0 +1,5 @@
+{"ts": "2026-04-10T09:29:50.703677Z", "session_id": "311e5903-b8ed-4d1d-9766-4403fd308e7d", "event": "session_start", "data": {"assistant_id": null, "model": "qwen3.5-flash-2026-02-23", "user_email": "admin@owi.com"}}
+{"ts": "2026-04-10T09:29:50.740215Z", "session_id": "311e5903-b8ed-4d1d-9766-4403fd308e7d", "event": "user_message", "data": {"content": "y"}}
+{"ts": "2026-04-10T09:29:50.740331Z", "session_id": "311e5903-b8ed-4d1d-9766-4403fd308e7d", "event": "tool_call", "data": {"command": "lamb assistant delete 67", "success": true, "elapsed_ms": 35.4, "data": {"message": "Assistant soft deleted successfully"}}}
+{"ts": "2026-04-10T09:29:53.384099Z", "session_id": "311e5903-b8ed-4d1d-9766-4403fd308e7d", "event": "agent_response", "data": {"content": "Math Tutor has been deleted.\n\n**Next?**\n1. Create a new assistant\n2. View my other assistants\n3. Other — tell me"}}
+{"ts": "2026-04-10T09:29:53.399269Z", "session_id": "311e5903-b8ed-4d1d-9766-4403fd308e7d", "event": "turn_complete", "data": {"turns": 12, "tool_calls": 1, "tool_errors": 0, "total_tool_time_ms": 35.4, "model": "qwen3.5-flash-2026-02-23"}}

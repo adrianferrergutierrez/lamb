@@ -1,0 +1,4 @@
+{"ts": "2026-04-10T10:08:41.191760Z", "session_id": "4a25cca3-6458-4bd0-8f73-0e6988817f57", "event": "session_start", "data": {"assistant_id": null, "model": "qwen3.5-flash-2026-02-23", "user_email": "admin@owi.com"}}
+{"ts": "2026-04-10T10:08:41.192796Z", "session_id": "4a25cca3-6458-4bd0-8f73-0e6988817f57", "event": "user_message", "data": {"content": "ahora quiero editarlo"}}
+{"ts": "2026-04-10T10:08:44.306957Z", "session_id": "4a25cca3-6458-4bd0-8f73-0e6988817f57", "event": "agent_response", "data": {"content": "```bash\nlamb assistant get \"Tutor de Matemáticas\"\n```\n\n**Next?**\n1. Ver configuración actual\n2. Sugerir mejoras específicas  \n3. Otro — cambiar algo concreto"}}
+{"ts": "2026-04-10T10:08:44.318903Z", "session_id": "4a25cca3-6458-4bd0-8f73-0e6988817f57", "event": "turn_complete", "data": {"turns": 9, "tool_calls": 0, "tool_errors": 0, "total_tool_time_ms": 0, "model": "qwen3.5-flash-2026-02-23"}}

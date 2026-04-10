@@ -1,0 +1,5 @@
+{"ts": "2026-04-10T09:06:28.652854Z", "session_id": "99ad9c20-9440-4283-b899-31c19ad45e76", "event": "session_start", "data": {"assistant_id": null, "model": "qwen3.5-flash-2026-02-23", "user_email": "admin@owi.com"}}
+{"ts": "2026-04-10T09:06:28.653758Z", "session_id": "99ad9c20-9440-4283-b899-31c19ad45e76", "event": "user_message", "data": {"content": "1"}}
+{"ts": "2026-04-10T09:06:30.481185Z", "session_id": "99ad9c20-9440-4283-b899-31c19ad45e76", "event": "action_queued", "data": {"command": "lamb assistant delete 63", "action_key": "assistant.delete"}}
+{"ts": "2026-04-10T09:06:32.074166Z", "session_id": "99ad9c20-9440-4283-b899-31c19ad45e76", "event": "agent_response", "data": {"content": "Esto eliminará permanentemente el asistente \"1_assistant_to_delete\" (ID 63) y todos sus datos asociados. No se puede deshacer.\n\n**Confirmar? (s)í / (n)o / cuéntame más**"}}
+{"ts": "2026-04-10T09:06:32.088540Z", "session_id": "99ad9c20-9440-4283-b899-31c19ad45e76", "event": "turn_complete", "data": {"turns": 5, "tool_calls": 0, "tool_errors": 0, "total_tool_time_ms": 0, "model": "qwen3.5-flash-2026-02-23"}}

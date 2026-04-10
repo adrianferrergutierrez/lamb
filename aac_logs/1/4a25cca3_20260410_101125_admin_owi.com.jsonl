@@ -1,0 +1,4 @@
+{"ts": "2026-04-10T10:11:25.267330Z", "session_id": "4a25cca3-6458-4bd0-8f73-0e6988817f57", "event": "session_start", "data": {"assistant_id": null, "model": "qwen3.5-flash-2026-02-23", "user_email": "admin@owi.com"}}
+{"ts": "2026-04-10T10:11:25.268247Z", "session_id": "4a25cca3-6458-4bd0-8f73-0e6988817f57", "event": "user_message", "data": {"content": "1"}}
+{"ts": "2026-04-10T10:11:28.025311Z", "session_id": "4a25cca3-6458-4bd0-8f73-0e6988817f57", "event": "agent_response", "data": {"content": "```bash\nlamb assistant list | grep -i \"Tutor de Biología\"\n```\n\n**Next?**\n1. Ver lista completa de asistentes\n2. Probar el asistente recién creado\n3. Otro — otra acción"}}
+{"ts": "2026-04-10T10:11:28.047833Z", "session_id": "4a25cca3-6458-4bd0-8f73-0e6988817f57", "event": "turn_complete", "data": {"turns": 20, "tool_calls": 0, "tool_errors": 0, "total_tool_time_ms": 0, "model": "qwen3.5-flash-2026-02-23"}}

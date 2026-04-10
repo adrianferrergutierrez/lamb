@@ -1,0 +1,4 @@
+{"ts": "2026-04-10T09:03:16.775179Z", "session_id": "19d44265-7bf1-48aa-a4cb-441adcc91ff1", "event": "session_start", "data": {"assistant_id": null, "model": "qwen3.5-flash-2026-02-23", "user_email": "admin@owi.com"}}
+{"ts": "2026-04-10T09:03:16.776032Z", "session_id": "19d44265-7bf1-48aa-a4cb-441adcc91ff1", "event": "user_message", "data": {"content": "hola?"}}
+{"ts": "2026-04-10T09:03:20.160144Z", "session_id": "19d44265-7bf1-48aa-a4cb-441adcc91ff1", "event": "agent_response", "data": {"content": "Voy a borrar el asistente **\"Matemáticas para Primaria\"** (ID 62). Esta acción es irreversible.\n\n**Confirmar? (s)i / (n)o / cuéntame más**"}}
+{"ts": "2026-04-10T09:03:20.173966Z", "session_id": "19d44265-7bf1-48aa-a4cb-441adcc91ff1", "event": "turn_complete", "data": {"turns": 5, "tool_calls": 0, "tool_errors": 0, "total_tool_time_ms": 0, "model": "qwen3.5-flash-2026-02-23"}}

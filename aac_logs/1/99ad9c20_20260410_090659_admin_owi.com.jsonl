@@ -1,0 +1,4 @@
+{"ts": "2026-04-10T09:06:59.451622Z", "session_id": "99ad9c20-9440-4283-b899-31c19ad45e76", "event": "session_start", "data": {"assistant_id": null, "model": "qwen3.5-flash-2026-02-23", "user_email": "admin@owi.com"}}
+{"ts": "2026-04-10T09:06:59.455612Z", "session_id": "99ad9c20-9440-4283-b899-31c19ad45e76", "event": "user_message", "data": {"content": "[System: User returned after being away. Things may have changed — don't assume earlier data is still current.]\n1"}}
+{"ts": "2026-04-10T09:07:02.593348Z", "session_id": "99ad9c20-9440-4283-b899-31c19ad45e76", "event": "agent_response", "data": {"content": ""}}
+{"ts": "2026-04-10T09:07:02.611038Z", "session_id": "99ad9c20-9440-4283-b899-31c19ad45e76", "event": "turn_complete", "data": {"turns": 8, "tool_calls": 0, "tool_errors": 0, "total_tool_time_ms": 0, "model": "qwen3.5-flash-2026-02-23"}}

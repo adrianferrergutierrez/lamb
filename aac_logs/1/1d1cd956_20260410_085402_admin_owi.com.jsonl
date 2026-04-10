@@ -1,0 +1,5 @@
+{"ts": "2026-04-10T08:54:02.361544Z", "session_id": "1d1cd956-2fd2-45f6-8423-0134e56185b8", "event": "session_start", "data": {"assistant_id": 62, "model": "qwen3.5-flash-2026-02-23", "user_email": "admin@owi.com"}}
+{"ts": "2026-04-10T08:54:02.362503Z", "session_id": "1d1cd956-2fd2-45f6-8423-0134e56185b8", "event": "user_message", "data": {"content": "1"}}
+{"ts": "2026-04-10T08:54:04.744492Z", "session_id": "1d1cd956-2fd2-45f6-8423-0134e56185b8", "event": "action_queued", "data": {"command": "lamb assistant update 62 --name \"Matemáticas para Primaria\"", "action_key": "assistant.update"}}
+{"ts": "2026-04-10T08:54:05.773642Z", "session_id": "1d1cd956-2fd2-45f6-8423-0134e56185b8", "event": "agent_response", "data": {"content": "**Confirmar? (s)i / (n)o / cuéntame más**"}}
+{"ts": "2026-04-10T08:54:05.787501Z", "session_id": "1d1cd956-2fd2-45f6-8423-0134e56185b8", "event": "turn_complete", "data": {"turns": 4, "tool_calls": 0, "tool_errors": 0, "total_tool_time_ms": 0, "model": "qwen3.5-flash-2026-02-23"}}

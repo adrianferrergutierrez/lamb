@@ -1,0 +1,4 @@
+{"ts": "2026-04-10T09:10:39.177355Z", "session_id": "99ad9c20-9440-4283-b899-31c19ad45e76", "event": "session_start", "data": {"assistant_id": null, "model": "qwen3.5-flash-2026-02-23", "user_email": "admin@owi.com"}}
+{"ts": "2026-04-10T09:10:39.178137Z", "session_id": "99ad9c20-9440-4283-b899-31c19ad45e76", "event": "user_message", "data": {"content": "1"}}
+{"ts": "2026-04-10T09:10:42.278650Z", "session_id": "99ad9c20-9440-4283-b899-31c19ad45e76", "event": "agent_response", "data": {"content": "¡Perfecto! Te escucho:\n\n**¿Qué asistente quieres crear?** (tema, nivel y si necesita documentos)\n\n**Next?**\n1. Ya te cuento los detalles\n2. Quiero ver ejemplos primero — Other — dime"}}
+{"ts": "2026-04-10T09:10:42.293086Z", "session_id": "99ad9c20-9440-4283-b899-31c19ad45e76", "event": "turn_complete", "data": {"turns": 11, "tool_calls": 0, "tool_errors": 0, "total_tool_time_ms": 0, "model": "qwen3.5-flash-2026-02-23"}}

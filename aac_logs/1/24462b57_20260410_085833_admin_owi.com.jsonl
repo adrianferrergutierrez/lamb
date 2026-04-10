@@ -1,0 +1,4 @@
+{"ts": "2026-04-10T08:58:33.842772Z", "session_id": "24462b57-c459-4e7b-923e-ae12ccd61941", "event": "session_start", "data": {"assistant_id": null, "model": "qwen3.5-flash-2026-02-23", "user_email": "admin@owi.com"}}
+{"ts": "2026-04-10T08:58:33.843891Z", "session_id": "24462b57-c459-4e7b-923e-ae12ccd61941", "event": "user_message", "data": {"content": "puedes borrar asistentes?"}}
+{"ts": "2026-04-10T08:58:37.085591Z", "session_id": "24462b57-c459-4e7b-923e-ae12ccd61941", "event": "agent_response", "data": {"content": "Sí, puedo borrar asistentes.\n\n¿Quieres borrar alguno específico? Necesitaré el ID o nombre del asistente.\n\n**Siguiente?**\n1. Ver mis asistentes primero\n2. Dime cuál borrar\n3. Otro — dime"}}
+{"ts": "2026-04-10T08:58:37.097870Z", "session_id": "24462b57-c459-4e7b-923e-ae12ccd61941", "event": "turn_complete", "data": {"turns": 11, "tool_calls": 0, "tool_errors": 0, "total_tool_time_ms": 0, "model": "qwen3.5-flash-2026-02-23"}}

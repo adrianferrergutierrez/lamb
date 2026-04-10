@@ -1,0 +1,4 @@
+{"ts": "2026-04-10T09:34:12.773995Z", "session_id": "50ddc419-55a4-4630-a91d-56bc989be566", "event": "session_start", "data": {"assistant_id": null, "model": "qwen3.5-flash-2026-02-23", "user_email": "admin@owi.com"}}
+{"ts": "2026-04-10T09:34:12.775119Z", "session_id": "50ddc419-55a4-4630-a91d-56bc989be566", "event": "user_message", "data": {"content": "hola?"}}
+{"ts": "2026-04-10T09:34:19.223806Z", "session_id": "50ddc419-55a4-4630-a91d-56bc989be566", "event": "agent_response", "data": {"content": "Creando un nuevo asistente:\n\n**Nombre:** Mi Tutor Mates  \n**Sistema:** Eres tutor de mates.  \n**Modelo:** gpt-4o-mini  \n\n¿Quieres crearlo ahora?\n\nConfirmar? (s)i / (n)o"}}
+{"ts": "2026-04-10T09:34:19.241552Z", "session_id": "50ddc419-55a4-4630-a91d-56bc989be566", "event": "turn_complete", "data": {"turns": 16, "tool_calls": 0, "tool_errors": 0, "total_tool_time_ms": 0, "model": "qwen3.5-flash-2026-02-23"}}

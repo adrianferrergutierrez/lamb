@@ -1,0 +1,5 @@
+{"ts": "2026-04-10T09:34:02.478031Z", "session_id": "50ddc419-55a4-4630-a91d-56bc989be566", "event": "session_start", "data": {"assistant_id": null, "model": "qwen3.5-flash-2026-02-23", "user_email": "admin@owi.com"}}
+{"ts": "2026-04-10T09:34:02.479116Z", "session_id": "50ddc419-55a4-4630-a91d-56bc989be566", "event": "user_message", "data": {"content": "vale"}}
+{"ts": "2026-04-10T09:34:04.891845Z", "session_id": "50ddc419-55a4-4630-a91d-56bc989be566", "event": "action_queued", "data": {"command": "lamb assistant create \"Mi Tutor Mates\" --system-prompt \"Eres tutor de mates.\" --llm gpt-4o-mini --prompt-template \"{user_input}\"", "action_key": "assistant.create"}}
+{"ts": "2026-04-10T09:34:06.224994Z", "session_id": "50ddc419-55a4-4630-a91d-56bc989be566", "event": "agent_response", "data": {"content": ""}}
+{"ts": "2026-04-10T09:34:06.240972Z", "session_id": "50ddc419-55a4-4630-a91d-56bc989be566", "event": "turn_complete", "data": {"turns": 15, "tool_calls": 0, "tool_errors": 0, "total_tool_time_ms": 0, "model": "qwen3.5-flash-2026-02-23"}}

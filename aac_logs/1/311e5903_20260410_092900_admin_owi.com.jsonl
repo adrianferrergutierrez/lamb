@@ -1,0 +1,4 @@
+{"ts": "2026-04-10T09:29:00.952490Z", "session_id": "311e5903-b8ed-4d1d-9766-4403fd308e7d", "event": "session_start", "data": {"assistant_id": null, "model": "qwen3.5-flash-2026-02-23", "user_email": "admin@owi.com"}}
+{"ts": "2026-04-10T09:29:00.953369Z", "session_id": "311e5903-b8ed-4d1d-9766-4403fd308e7d", "event": "user_message", "data": {"content": "middle school"}}
+{"ts": "2026-04-10T09:29:03.834706Z", "session_id": "311e5903-b8ed-4d1d-9766-4403fd308e7d", "event": "agent_response", "data": {"content": "**Should this assistant use a knowledge base with study materials?** (yes/no)"}}
+{"ts": "2026-04-10T09:29:03.849703Z", "session_id": "311e5903-b8ed-4d1d-9766-4403fd308e7d", "event": "turn_complete", "data": {"turns": 5, "tool_calls": 0, "tool_errors": 0, "total_tool_time_ms": 0, "model": "qwen3.5-flash-2026-02-23"}}

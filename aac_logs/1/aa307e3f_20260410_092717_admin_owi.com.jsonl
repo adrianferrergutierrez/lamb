@@ -1,0 +1,5 @@
+{"ts": "2026-04-10T09:27:17.339279Z", "session_id": "aa307e3f-6e47-446f-b2d1-9083f281c63b", "event": "session_start", "data": {"assistant_id": 60, "model": "qwen3.5-flash-2026-02-23", "user_email": "admin@owi.com"}}
+{"ts": "2026-04-10T09:27:17.340234Z", "session_id": "aa307e3f-6e47-446f-b2d1-9083f281c63b", "event": "user_message", "data": {"content": "s"}}
+{"ts": "2026-04-10T09:27:18.728625Z", "session_id": "aa307e3f-6e47-446f-b2d1-9083f281c63b", "event": "action_queued", "data": {"command": "lamb assistant delete 65", "action_key": "assistant.delete"}}
+{"ts": "2026-04-10T09:27:22.690651Z", "session_id": "aa307e3f-6e47-446f-b2d1-9083f281c63b", "event": "agent_response", "data": {"content": "**Confirmación recibida — borrando...**\n\n"}}
+{"ts": "2026-04-10T09:27:22.706493Z", "session_id": "aa307e3f-6e47-446f-b2d1-9083f281c63b", "event": "turn_complete", "data": {"turns": 14, "tool_calls": 0, "tool_errors": 0, "total_tool_time_ms": 0, "model": "qwen3.5-flash-2026-02-23"}}

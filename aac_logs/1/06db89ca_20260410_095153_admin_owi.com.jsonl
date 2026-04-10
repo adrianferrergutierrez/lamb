@@ -1,0 +1,4 @@
+{"ts": "2026-04-10T09:51:53.427050Z", "session_id": "06db89ca-51d5-43ac-88ed-cabb4fd049aa", "event": "session_start", "data": {"assistant_id": null, "model": "qwen3.5-flash-2026-02-23", "user_email": "admin@owi.com"}}
+{"ts": "2026-04-10T09:51:53.428119Z", "session_id": "06db89ca-51d5-43ac-88ed-cabb4fd049aa", "event": "user_message", "data": {"content": "da igual"}}
+{"ts": "2026-04-10T09:51:57.470562Z", "session_id": "06db89ca-51d5-43ac-88ed-cabb4fd049aa", "event": "agent_response", "data": {"content": "Te creo el asistente **max** con:\n\n- **Modelo:** qwen3.5-omni-plus-realtime-2026-03-15\n- **Conector:** openai\n- **Plantilla de prompt:** \"{user_input}\"\n\n¿Confirmar? (s)i / (n)o / cuéntame más"}}
+{"ts": "2026-04-10T09:51:57.483704Z", "session_id": "06db89ca-51d5-43ac-88ed-cabb4fd049aa", "event": "turn_complete", "data": {"turns": 5, "tool_calls": 0, "tool_errors": 0, "total_tool_time_ms": 0, "model": "qwen3.5-flash-2026-02-23"}}
