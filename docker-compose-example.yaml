@@ -46,8 +46,10 @@ services:
     command: >
       sh -lc "apk add --no-cache git && \
       git config --global --add safe.directory ${LAMB_PROJECT_PATH} && \
-      npm install && npm run build"
-    # This service only runs the build step and exits
+      rm -rf ${LAMB_PROJECT_PATH}/frontend/node_modules && \
+      npm install --ignore-scripts && \
+      npm run build"
+    # This service only runs the build step and exit
   kb:
     image: python:3.11-slim
     working_dir: ${LAMB_PROJECT_PATH}/lamb-kb-server-stable/backend

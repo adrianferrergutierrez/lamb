@@ -1,0 +1,11 @@
+{
+	"/": [
+		"src/routes/+layout.js"
+	],
+	"/grading": [
+		"src/routes/+layout.js"
+	],
+	"/upload": [
+		"src/routes/+layout.js"
+	]
+}
