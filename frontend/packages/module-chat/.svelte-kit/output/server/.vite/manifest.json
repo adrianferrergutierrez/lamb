@@ -1,41 +1,40 @@
 {
-  "../../node_modules/.pnpm/@sveltejs+kit@2.55.0_@opentelemetry+api@1.9.0_@sveltejs+vite-plugin-svelte@5.1.1_svelte_719721b76dcebab64219aee2579470ec/node_modules/@sveltejs/kit/src/runtime/app/server/remote/index.js": {
+  "../../node_modules/.pnpm/@sveltejs+kit@2.58.0_@opentelemetry+api@1.9.0_@sveltejs+vite-plugin-svelte@5.1.1_svelte_55050a0ff5af647c8c19155fe787c485/node_modules/@sveltejs/kit/src/runtime/app/server/remote/index.js": {
     "file": "remote-entry.js",
     "name": "remote-entry",
-    "src": "../../node_modules/.pnpm/@sveltejs+kit@2.55.0_@opentelemetry+api@1.9.0_@sveltejs+vite-plugin-svelte@5.1.1_svelte_719721b76dcebab64219aee2579470ec/node_modules/@sveltejs/kit/src/runtime/app/server/remote/index.js",
+    "src": "../../node_modules/.pnpm/@sveltejs+kit@2.58.0_@opentelemetry+api@1.9.0_@sveltejs+vite-plugin-svelte@5.1.1_svelte_55050a0ff5af647c8c19155fe787c485/node_modules/@sveltejs/kit/src/runtime/app/server/remote/index.js",
     "isEntry": true,
     "imports": [
       "_shared.js",
-      "_utils.js",
+      "_render-context.js",
       "_environment.js"
     ]
   },
-  "../../node_modules/.pnpm/@sveltejs+kit@2.55.0_@opentelemetry+api@1.9.0_@sveltejs+vite-plugin-svelte@5.1.1_svelte_719721b76dcebab64219aee2579470ec/node_modules/@sveltejs/kit/src/runtime/components/svelte-5/error.svelte": {
+  "../../node_modules/.pnpm/@sveltejs+kit@2.58.0_@opentelemetry+api@1.9.0_@sveltejs+vite-plugin-svelte@5.1.1_svelte_55050a0ff5af647c8c19155fe787c485/node_modules/@sveltejs/kit/src/runtime/components/svelte-5/error.svelte": {
     "file": "entries/fallbacks/error.svelte.js",
     "name": "entries/fallbacks/error.svelte",
-    "src": "../../node_modules/.pnpm/@sveltejs+kit@2.55.0_@opentelemetry+api@1.9.0_@sveltejs+vite-plugin-svelte@5.1.1_svelte_719721b76dcebab64219aee2579470ec/node_modules/@sveltejs/kit/src/runtime/components/svelte-5/error.svelte",
+    "src": "../../node_modules/.pnpm/@sveltejs+kit@2.58.0_@opentelemetry+api@1.9.0_@sveltejs+vite-plugin-svelte@5.1.1_svelte_55050a0ff5af647c8c19155fe787c485/node_modules/@sveltejs/kit/src/runtime/components/svelte-5/error.svelte",
     "isEntry": true,
     "imports": [
       "_root.js",
       "_state.svelte.js",
       "_exports.js",
-      "_utils2.js",
-      "_index.js"
+      "_utils.js",
+      "_utils2.js"
     ]
   },
-  "../../node_modules/.pnpm/@sveltejs+kit@2.55.0_@opentelemetry+api@1.9.0_@sveltejs+vite-plugin-svelte@5.1.1_svelte_719721b76dcebab64219aee2579470ec/node_modules/@sveltejs/kit/src/runtime/server/index.js": {
+  "../../node_modules/.pnpm/@sveltejs+kit@2.58.0_@opentelemetry+api@1.9.0_@sveltejs+vite-plugin-svelte@5.1.1_svelte_55050a0ff5af647c8c19155fe787c485/node_modules/@sveltejs/kit/src/runtime/server/index.js": {
     "file": "index.js",
     "name": "index",
-    "src": "../../node_modules/.pnpm/@sveltejs+kit@2.55.0_@opentelemetry+api@1.9.0_@sveltejs+vite-plugin-svelte@5.1.1_svelte_719721b76dcebab64219aee2579470ec/node_modules/@sveltejs/kit/src/runtime/server/index.js",
+    "src": "../../node_modules/.pnpm/@sveltejs+kit@2.58.0_@opentelemetry+api@1.9.0_@sveltejs+vite-plugin-svelte@5.1.1_svelte_55050a0ff5af647c8c19155fe787c485/node_modules/@sveltejs/kit/src/runtime/server/index.js",
     "isEntry": true,
     "imports": [
-      "_utils.js",
-      "_environment.js",
       "_shared.js",
-      "_root.js",
+      "_render-context.js",
+      "_environment.js",
       "_exports.js",
+      "_utils.js",
       "_utils2.js",
-      "_index.js",
       "_internal.js"
     ]
   },
@@ -88,13 +87,6 @@
     "file": "chunks/exports.js",
     "name": "exports"
   },
-  "_index.js": {
-    "file": "chunks/index.js",
-    "name": "index",
-    "imports": [
-      "_root.js"
-    ]
-  },
   "_internal.js": {
     "file": "chunks/internal.js",
     "name": "internal",
@@ -103,19 +95,23 @@
       "_environment.js"
     ]
   },
+  "_render-context.js": {
+    "file": "chunks/render-context.js",
+    "name": "render-context"
+  },
   "_root.js": {
     "file": "chunks/root.js",
     "name": "root",
     "imports": [
-      "_utils.js"
+      "_render-context.js"
     ]
   },
   "_shared.js": {
     "file": "chunks/shared.js",
     "name": "shared",
     "imports": [
-      "_utils2.js",
-      "_utils.js"
+      "_utils.js",
+      "_render-context.js"
     ]
   },
   "_state.svelte.js": {
@@ -132,7 +128,10 @@
   },
   "_utils2.js": {
     "file": "chunks/utils2.js",
-    "name": "utils"
+    "name": "utils",
+    "imports": [
+      "_root.js"
+    ]
   },
   "src/routes/+layout.js": {
     "file": "entries/pages/_layout.js",
@@ -146,9 +145,9 @@
     "src": "src/routes/+layout.svelte",
     "isEntry": true,
     "imports": [
-      "_index.js",
-      "_exports.js",
       "_utils2.js",
+      "_exports.js",
+      "_utils.js",
       "_root.js",
       "_state.svelte.js"
     ],
@@ -160,19 +159,7 @@
       "../ui/src/lib/locales/eu.json"
     ],
     "css": [
-      "app/immutable/assets/_layout.KNSAveu-.css"
-    ]
-  },
-  "src/routes/consent/+page.svelte": {
-    "file": "entries/pages/consent/_page.svelte.js",
-    "name": "entries/pages/consent/_page.svelte",
-    "src": "src/routes/consent/+page.svelte",
-    "isEntry": true,
-    "imports": [
-      "_exports.js",
-      "_utils2.js",
-      "_root.js",
-      "_state.svelte.js"
+      "app/immutable/assets/_layout.C0dwQK9c.css"
     ]
   },
   "src/routes/dashboard/+page.svelte": {
@@ -182,7 +169,7 @@
     "isEntry": true,
     "imports": [
       "_exports.js",
-      "_utils2.js",
+      "_utils.js",
       "_root.js",
       "_state.svelte.js"
     ]
@@ -194,7 +181,7 @@
     "isEntry": true,
     "imports": [
       "_exports.js",
-      "_utils2.js",
+      "_utils.js",
       "_root.js",
       "_state.svelte.js"
     ]

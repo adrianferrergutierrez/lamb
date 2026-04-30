@@ -10,37 +10,29 @@ return {
 	assets: new Set([]),
 	mimeTypes: {},
 	_: {
-		client: {start:"app/immutable/entry/start.hmu4ZIdg.js",app:"app/immutable/entry/app.Btl6qdNn.js",imports:["app/immutable/entry/start.hmu4ZIdg.js","app/immutable/chunks/CGulZU0u.js","app/immutable/chunks/DUaEK6Cc.js","app/immutable/chunks/rCysthYm.js","app/immutable/entry/app.Btl6qdNn.js","app/immutable/chunks/kGk1_tuU.js","app/immutable/chunks/DUaEK6Cc.js","app/immutable/chunks/IdnAerJf.js","app/immutable/chunks/DGMqFuIU.js","app/immutable/chunks/Culad9T0.js","app/immutable/chunks/FDWSqlQb.js"],stylesheets:[],fonts:[],uses_env_dynamic_public:false},
+		client: {start:"app/immutable/entry/start.JgpOiZgc.js",app:"app/immutable/entry/app.G--YQcqj.js",imports:["app/immutable/entry/start.JgpOiZgc.js","app/immutable/chunks/Clpuxtxc.js","app/immutable/chunks/Q91LBU2d.js","app/immutable/chunks/NvrPXAqV.js","app/immutable/entry/app.G--YQcqj.js","app/immutable/chunks/kGk1_tuU.js","app/immutable/chunks/Q91LBU2d.js","app/immutable/chunks/CbZQ0WoW.js","app/immutable/chunks/Bajkaokr.js","app/immutable/chunks/CWVJWJKG.js","app/immutable/chunks/CApJxbG6.js"],stylesheets:[],fonts:[],uses_env_dynamic_public:false},
 		nodes: [
 			__memo(() => import('./nodes/0.js')),
 			__memo(() => import('./nodes/1.js')),
 			__memo(() => import('./nodes/2.js')),
-			__memo(() => import('./nodes/3.js')),
-			__memo(() => import('./nodes/4.js'))
+			__memo(() => import('./nodes/3.js'))
 		],
 		remotes: {
 			
 		},
 		routes: [
 			{
-				id: "/consent",
-				pattern: /^\/consent\/?$/,
-				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 2 },
-				endpoint: null
-			},
-			{
 				id: "/dashboard",
 				pattern: /^\/dashboard\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 3 },
+				page: { layouts: [0,], errors: [1,], leaf: 2 },
 				endpoint: null
 			},
 			{
 				id: "/setup",
 				pattern: /^\/setup\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 4 },
+				page: { layouts: [0,], errors: [1,], leaf: 3 },
 				endpoint: null
 			}
 		],

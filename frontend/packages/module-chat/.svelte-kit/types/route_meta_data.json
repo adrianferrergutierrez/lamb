@@ -2,9 +2,6 @@
 	"/": [
 		"src/routes/+layout.js"
 	],
-	"/consent": [
-		"src/routes/+layout.js"
-	],
 	"/dashboard": [
 		"src/routes/+layout.js"
 	],

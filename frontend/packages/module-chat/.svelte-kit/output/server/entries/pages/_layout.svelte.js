@@ -1,7 +1,7 @@
-import { w as writable, d as derived } from "../../chunks/index.js";
+import { w as writable, d as derived } from "../../chunks/utils2.js";
 import "@sveltejs/kit/internal";
 import "../../chunks/exports.js";
-import "../../chunks/utils2.js";
+import "../../chunks/utils.js";
 import "@sveltejs/kit/internal/server";
 import "../../chunks/root.js";
 import "../../chunks/state.svelte.js";
@@ -10,7 +10,7 @@ function getDefaultExportFromCjs(x) {
 }
 const storedUser = { token: null, name: null, email: null, owiUrl: null, data: null };
 const createUserStore = () => {
-  const { subscribe, set: set2, update } = writable({
+  const { subscribe, set: set2 } = writable({
     isLoggedIn: false,
     ...storedUser
   });
@@ -42,11 +42,14 @@ const createUserStore = () => {
      * @param {string} token - Authentication token.
      */
     setToken: (token) => {
-      update((state) => ({
-        ...state,
+      set2({
         isLoggedIn: true,
-        token
-      }));
+        token,
+        name: null,
+        email: null,
+        owiUrl: null,
+        data: null
+      });
     },
     /**
      * Fetches the user profile from the backend and populates the store.
@@ -54,7 +57,7 @@ const createUserStore = () => {
      */
     fetchAndPopulateProfile: async () => {
       const { authService } = await import("../../chunks/authService.js");
-      return;
+      return null;
     },
     // Logout function
     logout: () => {

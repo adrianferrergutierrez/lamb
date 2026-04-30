@@ -1,13 +1,12 @@
-import { B as BROWSER } from "./chunks/utils.js";
-import { json, text, error } from "@sveltejs/kit";
+import { E as ENDPOINT_METHODS, P as PAGE_METHODS, n as negotiate, m as method_not_allowed, h as handle_error_and_jsonify, g as get_status, i as is_form_content_type, a as normalize_error, s as stringify, b as get_global_name, c as serialize_uses, d as clarify_devalue_error, e as get_node_type, f as noop, j as escape_html, k as create_remote_key, l as static_error_page, r as redirect_response, p as parse_remote_arg, o as stringify$1, q as deserialize_binary_form, t as split_remote_key, u as once, v as has_prerendered_path, T as TRAILING_SLASH_PARAM, I as INVALIDATED_PARAM, w as handle_fatal_error, x as format_server_error } from "./chunks/shared.js";
+import { B as BROWSER, u as uneval } from "./chunks/render-context.js";
+import { json, text, isRedirect, error } from "@sveltejs/kit";
 import { Redirect, SvelteKitError, ActionFailure, HttpError } from "@sveltejs/kit/internal";
 import { with_request_store, merge_tracing, try_get_request_store } from "@sveltejs/kit/internal/server";
 import { a as assets, b as base, c as app_dir, r as relative, o as override, d as reset } from "./chunks/environment.js";
-import { E as ENDPOINT_METHODS, P as PAGE_METHODS, n as negotiate, m as method_not_allowed, h as handle_error_and_jsonify, g as get_status, i as is_form_content_type, a as normalize_error, s as stringify, b as get_global_name, c as serialize_uses, d as clarify_devalue_error, e as get_node_type, f as escape_html, j as create_remote_key, k as static_error_page, r as redirect_response, p as parse_remote_arg, l as stringify$1, o as deserialize_binary_form, q as has_prerendered_path, T as TRAILING_SLASH_PARAM, I as INVALIDATED_PARAM, t as handle_fatal_error, M as MUTATIVE_METHODS, u as format_server_error } from "./chunks/shared.js";
-import { u as uneval } from "./chunks/root.js";
 import { m as make_trackable, d as disable_search, a as decode_params, S as SCHEME, v as validate_layout_server_exports, b as validate_layout_exports, c as validate_page_server_exports, e as validate_page_exports, n as normalize_path, r as resolve, f as decode_pathname, g as validate_server_exports } from "./chunks/exports.js";
-import { b as base64_encode, t as text_decoder, a as text_encoder } from "./chunks/utils2.js";
-import { r as readable, w as writable } from "./chunks/index.js";
+import { b as base64_encode, t as text_decoder, a as text_encoder } from "./chunks/utils.js";
+import { r as readable, w as writable } from "./chunks/utils2.js";
 import { p as public_env, r as read_implementation, o as options, s as set_private_env, a as set_public_env, g as get_hooks, b as set_read_implementation } from "./chunks/internal.js";
 function with_resolvers() {
   let resolve2;
@@ -20,6 +19,7 @@ function with_resolvers() {
 }
 const NULL_BODY_STATUS = [101, 103, 204, 205, 304];
 const IN_WEBCONTAINER = !!globalThis.process?.versions?.webcontainer;
+const s = JSON.stringify;
 async function render_endpoint(event, event_state, mod, state) {
   const method = (
     /** @type {import('types').HttpMethod} */
@@ -44,7 +44,6 @@ async function render_endpoint(event, event_state, mod, state) {
     }
   }
   try {
-    event_state.allows_commands = true;
     const response = await with_request_store(
       { event, state: event_state },
       () => handler(
@@ -360,7 +359,6 @@ async function call_action(event, event_state, actions) {
     },
     fn: async (current2) => {
       const traced_event = merge_tracing(event, current2);
-      event_state.allows_commands = true;
       const result = await with_request_store(
         { event: traced_event, state: event_state },
         () => action(traced_event)
@@ -759,8 +757,9 @@ async function load_data({
     },
     fn: async (current2) => {
       const traced_event = merge_tracing(event, current2);
+      const child_state = { ...event_state, is_in_universal_load: true };
       return await with_request_store(
-        { event: traced_event, state: event_state },
+        { event: traced_event, state: child_state },
         () => load.call(null, {
           url: event.url,
           params: event.params,
@@ -768,8 +767,7 @@ async function load_data({
           route: event.route,
           fetch: create_universal_fetch(event, state, fetched, csr, resolve_opts),
           setHeaders: event.setHeaders,
-          depends: () => {
-          },
+          depends: noop,
           parent,
           untrack: (fn) => fn(),
           tracing: traced_event.tracing
@@ -929,8 +927,7 @@ function create_universal_fetch(event, state, fetched, csr, resolve_opts) {
   };
   return (input, init2) => {
     const response = universal_fetch(input, init2);
-    response.catch(() => {
-    });
+    response.catch(noop);
     return response;
   };
 }
@@ -1015,7 +1012,6 @@ function serialize_data(fetched, filter, prerendering = false) {
   }
   return `<script ${attrs.join(" ")}>${safe_payload}<\/script>`;
 }
-const s = JSON.stringify;
 function sha256(data) {
   if (!key[0]) precompute();
   const out = init.slice(0);
@@ -1586,6 +1582,9 @@ async function render_response({
       transformError: error_components ? (
         /** @param {unknown} e */
         async (e) => {
+          if (isRedirect(e)) {
+            throw e;
+          }
           const transformed2 = await handle_error_and_jsonify(event, event_state, options2, e);
           props.page.error = props.error = error2 = transformed2;
           props.page.status = status = get_status(e);
@@ -1596,8 +1595,8 @@ async function render_response({
     const fetch2 = globalThis.fetch;
     try {
       if (BROWSER) ;
-      event_state.allows_commands = false;
-      rendered = await with_request_store({ event, state: event_state }, async () => {
+      const state2 = { ...event_state, is_in_render: true };
+      rendered = await with_request_store({ event, state: state2 }, async () => {
         if (relative) ;
         const maybe_promise = options2.root.render(props, render_opts);
         const rendered2 = options2.async && "then" in maybe_promise ? (
@@ -1619,22 +1618,22 @@ async function render_response({
     } finally {
       reset();
     }
-    for (const { node } of branch) {
-      for (const url of node.imports) modulepreloads.add(url);
-      for (const url of node.stylesheets) stylesheets.add(url);
-      for (const url of node.fonts) fonts.add(url);
-      if (node.inline_styles && !client.inline) {
-        Object.entries(await node.inline_styles()).forEach(([filename, css]) => {
-          if (typeof css === "string") {
-            inline_styles.set(filename, css);
-            return;
-          }
-          inline_styles.set(filename, css(`${assets$1}/${app_dir}/immutable/assets`, assets$1));
-        });
-      }
-    }
   } else {
     rendered = { head: "", html: "", css: { code: "", map: null }, hashes: { script: [] } };
+  }
+  for (const { node } of branch) {
+    for (const url of node.imports) modulepreloads.add(url);
+    for (const url of node.stylesheets) stylesheets.add(url);
+    for (const url of node.fonts) fonts.add(url);
+    if (node.inline_styles && !client.inline) {
+      Object.entries(await node.inline_styles()).forEach(([filename, css]) => {
+        if (typeof css === "string") {
+          inline_styles.set(filename, css);
+          return;
+        }
+        inline_styles.set(filename, css(`${assets$1}/${app_dir}/immutable/assets`, assets$1));
+      });
+    }
   }
   const head = new Head(rendered.head, !!state.prerendering);
   let body2 = rendered.html;
@@ -1792,19 +1791,24 @@ ${indent}	${hydrate.join(`,
 ${indent}	`)}
 ${indent}}`);
     }
-    const { remote_data: remote_cache } = event_state;
-    let serialized_remote_data = "";
-    if (remote_cache) {
-      const remote = {};
-      for (const [info, cache] of remote_cache) {
-        if (!info.id) continue;
+    const { remote } = event_state;
+    let serialized_query_data = "";
+    let serialized_prerender_data = "";
+    if (remote.data) {
+      const query = {};
+      const prerender = {};
+      for (const [internals, cache] of remote.data) {
+        if (!internals.id) continue;
         for (const key2 in cache) {
-          const remote_key = create_remote_key(info.id, key2);
-          if (event_state.refreshes?.[remote_key] !== void 0) {
-            remote[remote_key] = await cache[key2];
+          const entry = cache[key2];
+          if (!entry.serialize) continue;
+          const remote_key = create_remote_key(internals.id, key2);
+          const store = internals.type === "prerender" ? prerender : query;
+          if (event_state.remote.refreshes?.[remote_key] !== void 0) {
+            store[remote_key] = await entry.data;
           } else {
             const result = await Promise.race([
-              Promise.resolve(cache[key2]).then(
+              Promise.resolve(entry.data).then(
                 (v) => (
                   /** @type {const} */
                   { settled: true, value: v }
@@ -1823,7 +1827,7 @@ ${indent}}`);
             ]);
             if (result.settled) {
               if ("error" in result) throw result.error;
-              remote[remote_key] = result.value;
+              store[remote_key] = result.value;
             }
           }
         }
@@ -1836,10 +1840,18 @@ ${indent}}`);
           }
         }
       };
-      serialized_remote_data = `${global}.data = ${uneval(remote, replacer)};
+      if (Object.keys(query).length > 0) {
+        serialized_query_data = `${global}.query = ${uneval(query, replacer)};
 
 						`;
+      }
+      if (Object.keys(prerender).length > 0) {
+        serialized_prerender_data = `${global}.prerender = ${uneval(prerender, replacer)};
+
+						`;
+      }
     }
+    const serialized_remote_data = `${serialized_query_data}${serialized_prerender_data}`;
     const boot = client.inline ? `${client.inline.script}
 
 					${serialized_remote_data}${global}.app.start(${args.join(", ")});` : client.app ? `Promise.all([
@@ -1866,8 +1878,14 @@ ${indent}}`);
         opts = `, ${s(service_worker_options)}`;
       }
       blocks.push(`if ('serviceWorker' in navigator) {
+						const script_url = '${prefixed("service-worker.js")}';
+						const policy = globalThis?.window?.trustedTypes?.createPolicy(
+							'sveltekit-trusted-url',
+							{ createScriptURL(url) { return url; } }
+						);
+						const sanitised = policy?.createScriptURL(script_url) ?? script_url;
 						addEventListener('load', function () {
-							navigator.serviceWorker.register('${prefixed("service-worker.js")}'${opts});
+							navigator.serviceWorker.register(sanitised${opts});
 						});
 					}`);
     }
@@ -2012,6 +2030,7 @@ class Head {
   }
 }
 class PageNodes {
+  /** All layout nodes and the page node, if any */
   data;
   /**
    * @param {Array<import('types').SSRNode | undefined>} nodes
@@ -2213,15 +2232,14 @@ async function handle_remote_call_internal(event, state, options2, manifest, id)
   const module = await remotes[hash2]();
   const fn = module.default[name];
   if (!fn) error(404);
-  const info = fn.__;
+  const internals = fn.__;
   const transport = options2.hooks.transport;
   event.tracing.current.setAttributes({
-    "sveltekit.remote.call.type": info.type,
-    "sveltekit.remote.call.name": info.name
+    "sveltekit.remote.call.type": internals.type,
+    "sveltekit.remote.call.name": internals.name
   });
-  let form_client_refreshes;
   try {
-    if (info.type === "query_batch") {
+    if (internals.type === "query_batch") {
       if (event.request.method !== "POST") {
         throw new SvelteKitError(
           405,
@@ -2233,7 +2251,10 @@ async function handle_remote_call_internal(event, state, options2, manifest, id)
       const args = await Promise.all(
         payloads.map((payload2) => parse_remote_arg(payload2, transport))
       );
-      const results = await with_request_store({ event, state }, () => info.run(args, options2));
+      const results = await with_request_store(
+        { event, state },
+        () => internals.run(args, options2)
+      );
       return json(
         /** @type {RemoteFunctionResponse} */
         {
@@ -2242,7 +2263,7 @@ async function handle_remote_call_internal(event, state, options2, manifest, id)
         }
       );
     }
-    if (info.type === "form") {
+    if (internals.type === "form") {
       if (event.request.method !== "POST") {
         throw new SvelteKitError(
           405,
@@ -2260,23 +2281,24 @@ async function handle_remote_call_internal(event, state, options2, manifest, id)
         );
       }
       const { data: data2, meta, form_data } = await deserialize_binary_form(event.request);
-      form_client_refreshes = meta.remote_refreshes;
+      state.remote.requested = create_requested_map(meta.remote_refreshes);
       if (additional_args && !("id" in data2)) {
         data2.id = JSON.parse(decodeURIComponent(additional_args));
       }
-      const fn2 = info.fn;
+      const fn2 = internals.fn;
       const result = await with_request_store({ event, state }, () => fn2(data2, meta, form_data));
       return json(
         /** @type {RemoteFunctionResponse} */
         {
           type: "result",
           result: stringify$1(result, transport),
-          refreshes: result.issues ? void 0 : await serialize_refreshes(meta.remote_refreshes)
+          refreshes: result.issues ? void 0 : await serialize_refreshes()
         }
       );
     }
-    if (info.type === "command") {
+    if (internals.type === "command") {
       const { payload: payload2, refreshes } = await event.request.json();
+      state.remote.requested = create_requested_map(refreshes);
       const arg = parse_remote_arg(payload2, transport);
       const data2 = await with_request_store({ event, state }, () => fn(arg));
       return json(
@@ -2284,11 +2306,11 @@ async function handle_remote_call_internal(event, state, options2, manifest, id)
         {
           type: "result",
           result: stringify$1(data2, transport),
-          refreshes: await serialize_refreshes(refreshes)
+          refreshes: await serialize_refreshes()
         }
       );
     }
-    const payload = info.type === "prerender" ? additional_args : (
+    const payload = internals.type === "prerender" ? additional_args : (
       /** @type {string} */
       // new URL(...) necessary because we're hiding the URL from the user in the event object
       new URL(event.request.url).searchParams.get("payload")
@@ -2311,7 +2333,7 @@ async function handle_remote_call_internal(event, state, options2, manifest, id)
         {
           type: "redirect",
           location: error2.location,
-          refreshes: await serialize_refreshes(form_client_refreshes)
+          refreshes: await serialize_refreshes()
         }
       );
     }
@@ -2333,33 +2355,44 @@ async function handle_remote_call_internal(event, state, options2, manifest, id)
       }
     );
   }
-  async function serialize_refreshes(client_refreshes) {
-    const refreshes = state.refreshes ?? {};
-    if (client_refreshes) {
-      for (const key2 of client_refreshes) {
-        if (refreshes[key2] !== void 0) continue;
-        const [hash3, name2, payload] = key2.split("/");
-        const loader = manifest._.remotes[hash3];
-        const fn2 = (await loader?.())?.default?.[name2];
-        if (!fn2) error(400, "Bad Request");
-        refreshes[key2] = with_request_store(
-          { event, state },
-          () => fn2(parse_remote_arg(payload, transport))
-        );
-      }
-    }
-    if (Object.keys(refreshes).length === 0) {
+  async function serialize_refreshes() {
+    const refreshes = state.remote.refreshes ?? {};
+    const entries = Object.entries(refreshes);
+    if (entries.length === 0) {
       return void 0;
     }
-    return stringify$1(
-      Object.fromEntries(
-        await Promise.all(
-          Object.entries(refreshes).map(async ([key2, promise]) => [key2, await promise])
-        )
-      ),
-      transport
+    const results = await Promise.all(
+      entries.map(async ([key2, promise]) => {
+        try {
+          return [key2, { type: "result", data: await promise }];
+        } catch (error2) {
+          const status = error2 instanceof HttpError || error2 instanceof SvelteKitError ? error2.status : 500;
+          return [
+            key2,
+            {
+              type: "error",
+              status,
+              error: await handle_error_and_jsonify(event, state, options2, error2)
+            }
+          ];
+        }
+      })
     );
+    return stringify$1(Object.fromEntries(results), transport);
   }
+}
+function create_requested_map(refreshes) {
+  const requested = /* @__PURE__ */ new Map();
+  for (const key2 of refreshes ?? []) {
+    const parts = split_remote_key(key2);
+    const existing = requested.get(parts.id);
+    if (existing) {
+      existing.push(parts.payload);
+    } else {
+      requested.set(parts.id, [parts.payload]);
+    }
+  }
+  return requested;
 }
 async function handle_remote_form_post(event, state, manifest, id) {
   return record_span({
@@ -2402,7 +2435,7 @@ async function handle_remote_form_post_internal(event, state, manifest, id) {
   }
   try {
     const fn = (
-      /** @type {RemoteInfo & { type: 'form' }} */
+      /** @type {RemoteFormInternals} */
       /** @type {any} */
       form.__.fn
     );
@@ -2450,7 +2483,7 @@ async function render_page(event, event_state, page, options2, manifest, state, 
   }
   try {
     const leaf_node = (
-      /** @type {import('types').SSRNode} */
+      /** @type {SSRNode} */
       nodes.page()
     );
     let status = 200;
@@ -2492,7 +2525,15 @@ async function render_page(event, event_state, page, options2, manifest, state, 
     if (ssr === false && !(state.prerendering && should_prerender_data)) {
       if (BROWSER && action_result && !event.request.headers.has("x-sveltekit-action")) ;
       return await render_response({
-        branch: [],
+        // provide nodes without running load functions so that the styles and
+        // fonts are linked in the head before CSR takes over
+        branch: compact(nodes.data).map((node) => {
+          return {
+            node,
+            data: null,
+            server_data: null
+          };
+        }),
         fetched,
         page_config: {
           ssr: false,
@@ -2576,10 +2617,8 @@ async function render_page(event, event_state, page, options2, manifest, state, 
         }
       });
     });
-    for (const p of server_promises) p.catch(() => {
-    });
-    for (const p of load_promises) p.catch(() => {
-    });
+    for (const p of server_promises) p.catch(noop);
+    for (const p of load_promises) p.catch(noop);
     for (let i = 0; i < nodes.data.length; i += 1) {
       const node = nodes.data[i];
       if (node) {
@@ -2678,7 +2717,7 @@ async function render_page(event, event_state, page, options2, manifest, state, 
       },
       status,
       error: null,
-      branch: !ssr ? [] : compact(branch),
+      branch: compact(branch),
       action_result,
       fetched,
       data_serializer: !ssr ? server_data_serializer(event, event_state, options2) : data_serializer,
@@ -2719,15 +2758,6 @@ async function load_error_components(options2, ssr, branch, page, manifest) {
     );
   }
   return error_components;
-}
-function once(fn) {
-  let done = false;
-  let result;
-  return () => {
-    if (done) return result;
-    done = true;
-    return result = fn();
-  };
 }
 async function render_data(event, event_state, route, options2, manifest, state, invalidated_data_nodes, trailing_slash) {
   if (!route.page) {
@@ -3460,8 +3490,7 @@ function create_fetch({ event, options: options2, manifest, state, get_cookie_he
   };
   return (input, init2) => {
     const response = server_fetch(input, init2);
-    response.catch(() => {
-    });
+    response.catch(noop);
     return response;
   };
 }
@@ -3476,8 +3505,7 @@ async function internal_fetch(request, options2, manifest, state) {
     if (request.signal.aborted) {
       throw new DOMException("The operation was aborted.", "AbortError");
     }
-    let remove_abort_listener = () => {
-    };
+    let remove_abort_listener = noop;
     const abort_promise = new Promise((_, reject) => {
       const on_abort = () => {
         reject(new DOMException("The operation was aborted.", "AbortError"));
@@ -3521,7 +3549,6 @@ const default_filter = () => false;
 const default_preload = ({ type }) => type === "js" || type === "css";
 const page_methods = /* @__PURE__ */ new Set(["GET", "HEAD", "POST"]);
 const allowed_page_methods = /* @__PURE__ */ new Set(["GET", "HEAD", "OPTIONS"]);
-let warned_on_devtools_json_request = false;
 const respond = propagate_context(internal_respond);
 async function internal_respond(request, options2, manifest, state) {
   const url = new URL(request.url);
@@ -3574,7 +3601,17 @@ async function internal_respond(request, options2, manifest, state) {
     tracing: {
       record_span
     },
-    is_in_remote_function: false
+    remote: {
+      data: null,
+      forms: null,
+      /** A map of remote function key to corresponding single-flight-mutation promise */
+      refreshes: null,
+      /** A map of remote function ID to payloads requested for refreshing by the client */
+      requested: null
+    },
+    is_in_remote_function: false,
+    is_in_render: false,
+    is_in_universal_load: false
   };
   const event = {
     cookies,
@@ -3775,7 +3812,6 @@ async function internal_respond(request, options2, manifest, state) {
             current: root_span
           }
         };
-        event_state.allows_commands = MUTATIVE_METHODS.includes(request.method);
         return await with_request_store(
           { event: traced_event, state: event_state },
           () => options2.hooks.handle({
@@ -3859,9 +3895,13 @@ async function internal_respond(request, options2, manifest, state) {
     return response;
   } catch (e) {
     if (e instanceof Redirect) {
-      const response = is_data_request || remote_id ? redirect_json_response(e) : route?.page && is_action_json_request(event) ? action_json_redirect(e) : redirect_response(e.status, e.location);
-      add_cookies_to_headers(response.headers, new_cookies.values());
-      return response;
+      try {
+        const response = is_data_request || remote_id ? redirect_json_response(e) : route?.page && is_action_json_request(event) ? action_json_redirect(e) : redirect_response(e.status, e.location);
+        add_cookies_to_headers(response.headers, new_cookies.values());
+        return response;
+      } catch (err) {
+        return await handle_fatal_error(event, event_state, options2, err);
+      }
     }
     return await handle_fatal_error(event, event_state, options2, e);
   }
@@ -3884,7 +3924,17 @@ async function internal_respond(request, options2, manifest, state) {
           page_config: { ssr: false, csr: true },
           status: 200,
           error: null,
-          branch: [],
+          branch: [
+            // include the root layout because it applies to every page
+            {
+              node: (
+                /** @type {SSRNode} */
+                await manifest._.nodes[0]()
+              ),
+              data: null,
+              server_data: null
+            }
+          ],
           fetched: [],
           resolve_opts,
           data_serializer: server_data_serializer(event2, event_state, options2)
@@ -3978,7 +4028,6 @@ async function internal_respond(request, options2, manifest, state) {
         });
       }
       if (state.depth === 0) {
-        if (BROWSER && event2.url.pathname === "/.well-known/appspecific/com.chrome.devtools.json") ;
         return await respond_with_error({
           event: event2,
           event_state,
@@ -4111,8 +4160,7 @@ class Server {
             console.error("Remote function schema validation failed:", issues);
             return { message: "Bad Request" };
           }),
-          reroute: module.reroute || (() => {
-          }),
+          reroute: module.reroute || noop,
           transport: module.transport || {}
         };
         set_app({
